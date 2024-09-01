@@ -128,3 +128,14 @@ sur [https://www.contributor-covenant.org/translations][translations].
 [Mozilla CoC]: https://github.com/mozilla/diversity
 [FAQ]: https://www.contributor-covenant.org/faq
 [translations]: https://www.contributor-covenant.org/translations
+
+
+Sources d'inspiration :
+
+* https://github.com/artisans-du-logiciel/communaute/blob/cceca810899a57a64f65265fb2ffe15f803ebd1b/CODE_DE_CONDUITE.md
+* https://github.com/Nomade-Finance/.github/blob/3523d38a8d8856bacd5e46c2b53d22d45d68c534/CODE_DE_CONDUITE.md
+* https://socrates-fr.github.io/doc/coc.pdf
+* https://www.alpescraft.fr/coc/
+* https://www.hello-world.events/code-of-conduct/
+* https://www.duchess-france.fr/coc/
+* https://lapdg.fr/charte/
