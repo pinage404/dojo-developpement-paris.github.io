@@ -141,3 +141,8 @@ Sources d'inspiration :
 * https://www.hello-world.events/code-of-conduct/
 * https://www.duchess-france.fr/coc/
 * https://lapdg.fr/charte/
+* https://faiseusesduweb.eu.org/code%20de%20conduite.html
+* https://www.uemss.org/Manifeste-et-protocole-anti-oppressions
+* https://socrates-fr.github.io/doc/coc.pdf
+
+la participation vaut acceptation
