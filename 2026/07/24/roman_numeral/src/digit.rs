@@ -43,13 +43,13 @@ impl fmt::Display for Digit {
             f,
             "{}",
             match self {
-                Digit::M => "M",
-                Digit::D => "D",
-                Digit::C => "C",
-                Digit::L => "L",
-                Digit::X => "X",
-                Digit::V => "V",
-                Digit::I => "I",
+                Self::M => "M",
+                Self::D => "D",
+                Self::C => "C",
+                Self::L => "L",
+                Self::X => "X",
+                Self::V => "V",
+                Self::I => "I",
             }
         )
     }
