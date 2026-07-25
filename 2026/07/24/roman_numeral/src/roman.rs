@@ -46,8 +46,8 @@ impl Add for Roman {
     type Output = Self;
 
     fn add(self, other: Self) -> Self::Output {
-        let mut digits = self.digits.clone();
-        digits.extend(other.digits.clone());
+        let mut digits = self.digits;
+        digits.extend(other.digits);
         Self::new(digits)
     }
 }
