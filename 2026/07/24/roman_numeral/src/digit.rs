@@ -1,7 +1,7 @@
 use std::{cmp, fmt, ops::Sub};
 
 #[derive(Debug, PartialEq, Clone, Copy)]
-pub enum Digit {
+pub(crate) enum Digit {
     M,
     D,
     C,
