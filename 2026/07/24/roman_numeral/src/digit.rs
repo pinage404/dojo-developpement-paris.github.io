@@ -24,6 +24,19 @@ impl Digit {
         }
     }
 
+    fn to_symbol(self) -> String {
+        match self {
+            Self::M => "M",
+            Self::D => "D",
+            Self::C => "C",
+            Self::L => "L",
+            Self::X => "X",
+            Self::V => "V",
+            Self::I => "I",
+        }
+        .to_string()
+    }
+
     pub(crate) fn all_digits() -> Vec<Self> {
         vec![
             Self::M,
@@ -39,18 +52,6 @@ impl Digit {
 
 impl fmt::Display for Digit {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(
-            f,
-            "{}",
-            match self {
-                Self::M => "M",
-                Self::D => "D",
-                Self::C => "C",
-                Self::L => "L",
-                Self::X => "X",
-                Self::V => "V",
-                Self::I => "I",
-            }
-        )
+        write!(f, "{}", self.to_symbol())
     }
 }
