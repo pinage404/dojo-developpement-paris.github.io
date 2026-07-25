@@ -17,7 +17,7 @@ impl From<u16> for Roman {
     fn from(decimal: u16) -> Self {
         let all_digits = Digit::all_digits();
 
-        let all_digit_minus = [Digit::I, Digit::X];
+        let all_digit_minus = [Digit::I, Digit::X, Digit::C];
         all_digit_minus
             .iter()
             .find_map(|digit_minus| {
@@ -31,15 +31,6 @@ impl From<u16> for Roman {
                 })
             })
             .unwrap_or_else(|| {
-                let digit_minus = Digit::C;
-                let digit = *all_digits
-                    .get(all_digits.iter().position(|d| *d == digit_minus).unwrap() - 1)
-                    .unwrap();
-                if decimal >= digit - digit_minus && decimal < digit {
-                    return Self::new(vec![digit_minus, digit])
-                        + Self::from(decimal - (digit - digit_minus));
-                }
-
                 all_digits
                     .into_iter()
                     .find_map(|digit| {
