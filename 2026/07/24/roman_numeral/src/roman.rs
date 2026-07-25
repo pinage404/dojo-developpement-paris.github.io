@@ -13,12 +13,6 @@ impl Roman {
     }
 }
 
-impl From<Digit> for Roman {
-    fn from(digit: Digit) -> Self {
-        Self::new(vec![digit])
-    }
-}
-
 impl From<u16> for Roman {
     fn from(decimal: u16) -> Self {
         if decimal == 0 {
@@ -42,7 +36,7 @@ impl From<u16> for Roman {
             .find(|digit| decimal >= digit)
             .unwrap_or(Digit::I);
 
-        Self::from(digit) + Self::from(decimal - digit)
+        Self::new(vec![digit]) + Self::from(decimal - digit)
     }
 }
 
