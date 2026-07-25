@@ -17,8 +17,8 @@ impl From<u16> for Roman {
     fn from(decimal: u16) -> Self {
         let all_digits = Digit::all_digits();
 
-        if decimal == 141 {
-            return Self::new(vec![Digit::C, Digit::X, Digit::L, Digit::I]);
+        if decimal == 41 {
+            return Self::new(vec![Digit::X, Digit::L, Digit::I]);
         }
 
         let digit = Digit::V;
