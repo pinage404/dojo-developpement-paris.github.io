@@ -43,6 +43,11 @@ mod test {
         check_to_roman(400, "CD");
     }
 
+    #[test]
+    fn fourth_with_others_numbers() {
+        check_to_roman(141, "CXLI");
+    }
+
     fn check_to_roman(number: u16, roman: &str) {
         assert_that(&Roman::from(number).to_string()).is_equal_to(String::from(roman));
     }
