@@ -26,13 +26,17 @@ impl From<u16> for Roman {
         }
 
         let digit = Digit::L;
-        let digit_minus = Digit::X;
+        let digit_minus = *all_digits
+            .get(all_digits.iter().position(|d| *d == digit).unwrap() + 1)
+            .unwrap();
         if decimal == digit.value() - digit_minus.value() {
             return Self::new(vec![digit_minus, digit]);
         }
 
         let digit = Digit::D;
-        let digit_minus = Digit::C;
+        let digit_minus = *all_digits
+            .get(all_digits.iter().position(|d| *d == digit).unwrap() + 1)
+            .unwrap();
         if decimal == digit.value() - digit_minus.value() {
             return Self::new(vec![digit_minus, digit]);
         }
