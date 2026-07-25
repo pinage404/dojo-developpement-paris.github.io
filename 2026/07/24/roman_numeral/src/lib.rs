@@ -28,12 +28,18 @@ mod test {
     }
 
     #[test]
+    fn fives() {
+        check_roman(500, "D");
+        check_roman(50, "L");
+        check_roman(5, "V");
+    }
+
+    #[test]
     fn check_romans() {
         check_roman(2_000, "MM");
         check_roman(1_100, "MC");
         check_roman(110, "CX");
         check_roman(3, "III");
-        check_roman(5, "V");
         check_roman(550, "DL");
     }
 
