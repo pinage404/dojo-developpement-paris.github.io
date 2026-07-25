@@ -1,17 +1,20 @@
+use crate::digit::Digit;
+use crate::roman::Roman;
+
 mod digit;
 
 mod roman;
 
-pub fn to_roman(arg: u16) -> roman::Roman {
+pub fn to_roman(arg: u16) -> Roman {
     if arg == 0 {
-        return roman::Roman::new(vec![]);
+        return Roman::new(vec![]);
     }
 
-    let digit = digit::Digit::all_digits()
+    let digit = Digit::all_digits()
         .into_iter()
         .find(|digit| arg >= digit.value())
-        .unwrap_or(digit::Digit::I);
-    roman::Roman::from(digit) + to_roman(arg - digit.value())
+        .unwrap_or(Digit::I);
+    Roman::from(digit) + to_roman(arg - digit.value())
 }
 
 #[cfg(test)]
