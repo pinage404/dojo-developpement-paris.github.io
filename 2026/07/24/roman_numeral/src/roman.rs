@@ -8,7 +8,7 @@ pub struct Roman {
 }
 
 impl Roman {
-    pub fn new(digits: Vec<Digit>) -> Self {
+    fn new(digits: Vec<Digit>) -> Self {
         Self { digits }
     }
 }
