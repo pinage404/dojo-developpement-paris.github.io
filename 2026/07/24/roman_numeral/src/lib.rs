@@ -1,73 +1,20 @@
 use std::{fmt, ops::Add};
 
-#[derive(Debug, PartialEq, Clone, Copy)]
-pub enum Digit {
-    M,
-    D,
-    C,
-    L,
-    X,
-    V,
-    I,
-}
-
-impl Digit {
-    fn value(self) -> u16 {
-        match self {
-            Digit::M => 1_000,
-            Digit::D => 500,
-            Digit::C => 100,
-            Digit::L => 50,
-            Digit::X => 10,
-            Digit::V => 5,
-            Digit::I => 1,
-        }
-    }
-
-    fn all_digits() -> Vec<Digit> {
-        vec![
-            Digit::M,
-            Digit::D,
-            Digit::C,
-            Digit::L,
-            Digit::X,
-            Digit::V,
-            Digit::I,
-        ]
-    }
-}
-
-impl fmt::Display for Digit {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(
-            f,
-            "{}",
-            match self {
-                Digit::M => "M",
-                Digit::D => "D",
-                Digit::C => "C",
-                Digit::L => "L",
-                Digit::X => "X",
-                Digit::V => "V",
-                Digit::I => "I",
-            }
-        )
-    }
-}
+mod digit;
 
 #[derive(Debug, PartialEq)]
 pub struct Roman {
-    digits: Vec<Digit>,
+    digits: Vec<digit::Digit>,
 }
 
 impl Roman {
-    pub fn new(digits: Vec<Digit>) -> Self {
+    pub fn new(digits: Vec<digit::Digit>) -> Self {
         Self { digits }
     }
 }
 
-impl From<Digit> for Roman {
-    fn from(digit: Digit) -> Self {
+impl From<digit::Digit> for Roman {
+    fn from(digit: digit::Digit) -> Self {
         Self::new(vec![digit])
     }
 }
@@ -95,10 +42,10 @@ pub fn to_roman(arg: u16) -> Roman {
         return Roman::new(vec![]);
     }
 
-    let digit = Digit::all_digits()
+    let digit = digit::Digit::all_digits()
         .into_iter()
         .find(|digit| arg >= digit.value())
-        .unwrap_or(Digit::I);
+        .unwrap_or(digit::Digit::I);
     Roman::from(digit) + to_roman(arg - digit.value())
 }
 
