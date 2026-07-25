@@ -14,25 +14,25 @@ pub enum Digit {
 impl Digit {
     pub(crate) fn value(self) -> u16 {
         match self {
-            Digit::M => 1_000,
-            Digit::D => 500,
-            Digit::C => 100,
-            Digit::L => 50,
-            Digit::X => 10,
-            Digit::V => 5,
-            Digit::I => 1,
+            Self::M => 1_000,
+            Self::D => 500,
+            Self::C => 100,
+            Self::L => 50,
+            Self::X => 10,
+            Self::V => 5,
+            Self::I => 1,
         }
     }
 
-    pub(crate) fn all_digits() -> Vec<Digit> {
+    pub(crate) fn all_digits() -> Vec<Self> {
         vec![
-            Digit::M,
-            Digit::D,
-            Digit::C,
-            Digit::L,
-            Digit::X,
-            Digit::V,
-            Digit::I,
+            Self::M,
+            Self::D,
+            Self::C,
+            Self::L,
+            Self::X,
+            Self::V,
+            Self::I,
         ]
     }
 }
