@@ -47,6 +47,7 @@ mod test {
     #[test]
     fn fourth_with_others_numbers() {
         check_to_roman(141, "CXLI");
+        check_to_roman(3444, "MMMCDXLIV");
     }
 
     // #[quickcheck]
