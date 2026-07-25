@@ -7,7 +7,7 @@ mod roman;
 
 pub fn to_roman(arg: u16) -> Roman {
     if arg == 0 {
-        return Roman::new(vec![]);
+        return Roman::default();
     }
 
     let digit = Digit::all_digits()

@@ -2,7 +2,7 @@ use std::{fmt, ops::Add};
 
 use crate::digit::Digit;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Default)]
 pub struct Roman {
     pub(crate) digits: Vec<Digit>,
 }
