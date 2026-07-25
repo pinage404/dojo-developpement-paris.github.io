@@ -24,17 +24,16 @@ impl Digit {
         }
     }
 
-    fn to_symbol(self) -> String {
+    fn to_symbol(self) -> char {
         match self {
-            Self::M => "M",
-            Self::D => "D",
-            Self::C => "C",
-            Self::L => "L",
-            Self::X => "X",
-            Self::V => "V",
-            Self::I => "I",
+            Self::M => 'M',
+            Self::D => 'D',
+            Self::C => 'C',
+            Self::L => 'L',
+            Self::X => 'X',
+            Self::V => 'V',
+            Self::I => 'I',
         }
-        .to_string()
     }
 
     pub(crate) fn all_digits() -> Vec<Self> {
