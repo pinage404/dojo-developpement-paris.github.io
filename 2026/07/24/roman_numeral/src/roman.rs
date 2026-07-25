@@ -15,10 +15,6 @@ impl Roman {
 
 impl From<u16> for Roman {
     fn from(decimal: u16) -> Self {
-        if decimal == 0 {
-            return Self::default();
-        }
-
         if decimal == 5 - 1 {
             return Self::new(vec![Digit::I, Digit::V]);
         }
@@ -31,12 +27,11 @@ impl From<u16> for Roman {
             return Self::new(vec![Digit::C, Digit::D]);
         }
 
-        let digit = Digit::all_digits()
+        Digit::all_digits()
             .into_iter()
             .find(|digit| decimal >= digit)
-            .unwrap_or(Digit::I);
-
-        Self::new(vec![digit]) + Self::from(decimal - digit)
+            .map(|digit| Self::new(vec![digit]) + Self::from(decimal - digit))
+            .unwrap_or(Self::default())
     }
 }
 
