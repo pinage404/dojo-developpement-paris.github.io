@@ -29,6 +29,7 @@ impl From<u16> for Roman {
             .into_iter()
             .find(|digit| decimal >= digit)
             .unwrap_or(Digit::I);
+
         Self::from(digit) + Self::from(decimal - digit)
     }
 }
