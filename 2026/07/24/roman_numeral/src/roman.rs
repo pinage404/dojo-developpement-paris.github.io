@@ -33,6 +33,10 @@ impl From<u16> for Roman {
             return Self::new(vec![Digit::X, Digit::L]);
         }
 
+        if decimal == 500 - 100 {
+            return Self::new(vec![Digit::C, Digit::D]);
+        }
+
         let digit = Digit::all_digits()
             .into_iter()
             .find(|digit| decimal >= digit)
