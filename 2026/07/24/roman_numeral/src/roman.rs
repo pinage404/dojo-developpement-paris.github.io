@@ -2,9 +2,11 @@ use std::{fmt, ops::Add};
 
 use crate::digit::Digit;
 
+type Digits = Vec<Digit>;
+
 #[derive(Debug, PartialEq, Default)]
 pub struct Roman {
-    digits: Vec<Digit>,
+    digits: Digits,
 }
 
 impl Roman {
