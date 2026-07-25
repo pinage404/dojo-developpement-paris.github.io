@@ -25,9 +25,9 @@ impl From<u16> for Roman {
             return Self::new(vec![digit_minus, digit]);
         }
 
-        let digit = Digit::L;
-        let digit_minus = *all_digits
-            .get(all_digits.iter().position(|d| *d == digit).unwrap() + 1)
+        let digit_minus = Digit::X;
+        let digit = *all_digits
+            .get(all_digits.iter().position(|d| *d == digit_minus).unwrap() - 1)
             .unwrap();
         if decimal == digit - digit_minus {
             return Self::new(vec![digit_minus, digit]);
@@ -38,9 +38,9 @@ impl From<u16> for Roman {
                 + Self::from(decimal - (digit - digit_minus));
         }
 
-        let digit = Digit::D;
-        let digit_minus = *all_digits
-            .get(all_digits.iter().position(|d| *d == digit).unwrap() + 1)
+        let digit_minus = Digit::C;
+        let digit = *all_digits
+            .get(all_digits.iter().position(|d| *d == digit_minus).unwrap() - 1)
             .unwrap();
         if decimal == digit - digit_minus {
             return Self::new(vec![digit_minus, digit]);
