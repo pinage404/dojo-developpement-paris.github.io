@@ -1,6 +1,6 @@
 mod digit;
 
-mod roman;
+pub mod roman;
 
 #[cfg(test)]
 mod test {
