@@ -2,19 +2,21 @@ use std::{fmt, ops::Add};
 
 use crate::digit::Digit;
 
+type Digits = Digit;
+
 #[derive(Debug, PartialEq, Default)]
 pub struct Roman {
-    digits: Vec<Digit>,
+    digits: Vec<Digits>,
 }
 
 impl Roman {
-    fn new(digits: Vec<Digit>) -> Self {
+    fn new(digits: Vec<Digits>) -> Self {
         Self { digits }
     }
 }
 
-impl From<Digit> for Roman {
-    fn from(digit: Digit) -> Self {
+impl From<Digits> for Roman {
+    fn from(digit: Digits) -> Self {
         Self::new(vec![digit])
     }
 }
@@ -26,21 +28,21 @@ impl From<u16> for Roman {
         }
 
         if decimal == 5 - 1 {
-            return Self::new(vec![Digit::I, Digit::V]);
+            return Self::new(vec![Digits::I, Digits::V]);
         }
 
         if decimal == 50 - 10 {
-            return Self::new(vec![Digit::X, Digit::L]);
+            return Self::new(vec![Digits::X, Digits::L]);
         }
 
         if decimal == 500 - 100 {
-            return Self::new(vec![Digit::C, Digit::D]);
+            return Self::new(vec![Digits::C, Digits::D]);
         }
 
-        let digit = Digit::all_digits()
+        let digit = Digits::all_digits()
             .into_iter()
             .find(|digit| decimal >= digit)
-            .unwrap_or(Digit::I);
+            .unwrap_or(Digits::I);
 
         Self::from(digit) + Self::from(decimal - digit)
     }
