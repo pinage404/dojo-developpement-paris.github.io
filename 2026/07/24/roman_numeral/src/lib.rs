@@ -12,7 +12,7 @@ pub fn to_roman(arg: u16) -> Roman {
 
     let digit = Digit::all_digits()
         .into_iter()
-        .find(|digit| arg >= digit.value())
+        .find(|digit| arg >= digit)
         .unwrap_or(Digit::I);
     Roman::from(digit) + to_roman(arg - digit)
 }

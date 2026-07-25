@@ -1,4 +1,8 @@
-use std::{fmt, ops::Sub};
+use std::{
+    cmp::{self},
+    fmt,
+    ops::Sub,
+};
 
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub enum Digit {
@@ -61,5 +65,17 @@ impl Sub<Digit> for u16 {
 
     fn sub(self, other: Digit) -> Self::Output {
         self - other.value()
+    }
+}
+
+impl PartialEq<&Digit> for u16 {
+    fn eq(&self, other: &&Digit) -> bool {
+        *self == other.value()
+    }
+}
+
+impl PartialOrd<&Digit> for u16 {
+    fn partial_cmp(&self, other: &&Digit) -> Option<cmp::Ordering> {
+        self.partial_cmp(&other.value())
     }
 }
