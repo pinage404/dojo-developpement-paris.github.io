@@ -4,7 +4,6 @@ mod roman;
 
 #[cfg(test)]
 mod test {
-    use super::*;
     use crate::roman::Roman;
     use speculoos::*;
 
