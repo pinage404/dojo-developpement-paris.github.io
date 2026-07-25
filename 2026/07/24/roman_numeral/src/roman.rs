@@ -15,7 +15,7 @@ impl Roman {
 
 impl From<u16> for Roman {
     fn from(decimal: u16) -> Self {
-        if decimal == 5 - 1 {
+        if decimal == Digit::V.value() - Digit::I.value() {
             return Self::new(vec![Digit::I, Digit::V]);
         }
 
