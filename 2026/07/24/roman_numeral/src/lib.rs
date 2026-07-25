@@ -36,6 +36,11 @@ mod test {
         check_roman(3333, "MMMCCCXXXIII");
     }
 
+    #[test]
+    fn fourth() {
+        check_roman(4, "IV");
+    }
+
     fn check_roman(number: u16, roman: &str) {
         assert_that(&Roman::from(number).to_string()).is_equal_to(String::from(roman));
     }

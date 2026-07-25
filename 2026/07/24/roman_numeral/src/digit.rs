@@ -1,7 +1,7 @@
 use std::{cmp, fmt, ops::Sub};
 
 #[derive(Debug, PartialEq, Clone, Copy)]
-pub(crate) enum Digit {
+pub(super) enum Digit {
     M,
     D,
     C,
@@ -12,7 +12,7 @@ pub(crate) enum Digit {
 }
 
 impl Digit {
-    pub(crate) fn all_digits() -> Vec<Self> {
+    pub(super) fn all_digits() -> Vec<Self> {
         vec![
             Self::M,
             Self::D,
