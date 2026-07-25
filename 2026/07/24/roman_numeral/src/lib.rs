@@ -39,6 +39,7 @@ mod test {
     #[test]
     fn fourth() {
         check_roman(4, "IV");
+        check_roman(40, "XL");
     }
 
     fn check_roman(number: u16, roman: &str) {
