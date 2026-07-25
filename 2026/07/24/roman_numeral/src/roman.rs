@@ -29,8 +29,8 @@ impl From<u16> for Roman {
 
         Digit::all_digits()
             .into_iter()
-            .enumerate()
-            .find_map(|(_index, digit)| {
+            
+            .find_map(|digit| {
                 (decimal >= digit).then(|| Self::new(vec![digit]) + Self::from(decimal - digit))
             })
             .unwrap_or(Self::default())
