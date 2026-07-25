@@ -35,11 +35,15 @@ mod test {
     }
 
     #[test]
-    fn check_romans() {
+    fn several_time_concatenate() {
         check_roman(2_000, "MM");
+        check_roman(3, "III");
+    }
+
+    #[test]
+    fn check_romans() {
         check_roman(1_100, "MC");
         check_roman(110, "CX");
-        check_roman(3, "III");
         check_roman(550, "DL");
     }
 
