@@ -41,7 +41,7 @@ mod test {
     }
 
     #[test]
-    fn check_romans() {
+    fn concatenate_symbol() {
         check_roman(1_100, "MC");
         check_roman(110, "CX");
         check_roman(550, "DL");
