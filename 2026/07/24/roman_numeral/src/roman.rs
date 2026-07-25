@@ -34,7 +34,7 @@ impl From<u16> for Roman {
         }
 
         if decimal == 41 {
-            return Self::new(vec![Digit::X, Digit::L])
+            return Self::new(vec![digit_minus, digit])
                 + Self::from(decimal - (digit - digit_minus));
         }
 
