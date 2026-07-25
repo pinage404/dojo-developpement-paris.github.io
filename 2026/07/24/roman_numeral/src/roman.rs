@@ -27,10 +27,10 @@ impl fmt::Display for Roman {
     }
 }
 
-impl Add<Roman> for Roman {
-    type Output = Roman;
+impl Add for Roman {
+    type Output = Self;
 
-    fn add(self, other: Roman) -> Self::Output {
+    fn add(self, other: Self) -> Self::Output {
         let mut new_digits = self.digits.clone();
         new_digits.extend(other.digits.clone());
         Roman { digits: new_digits }
