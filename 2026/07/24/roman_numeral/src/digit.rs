@@ -1,8 +1,4 @@
-use std::{
-    cmp::{self},
-    fmt,
-    ops::Sub,
-};
+use std::{cmp, fmt, ops::Sub};
 
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub enum Digit {
