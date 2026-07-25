@@ -17,7 +17,7 @@ impl From<u16> for Roman {
     fn from(decimal: u16) -> Self {
         let all_digits = Digit::all_digits();
 
-        let all_digit_minus = [Digit::I, Digit::X, Digit::C];
+        let all_digit_minus = [Digit::C, Digit::X, Digit::I];
         all_digit_minus
             .iter()
             .find_map(|digit_minus| {
