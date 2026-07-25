@@ -18,9 +18,8 @@ impl From<u16> for Roman {
         let all_digits = Digit::all_digits();
 
         Digit::dozens()
-            .iter()
+            .into_iter()
             .find_map(|digit_minus| {
-                let digit_minus = *digit_minus;
                 let digit = *all_digits
                     .get(all_digits.iter().position(|d| *d == digit_minus).unwrap() - 1)
                     .unwrap();

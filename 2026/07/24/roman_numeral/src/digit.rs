@@ -23,6 +23,7 @@ impl Digit {
             Self::I,
         ]
     }
+
     pub(super) fn dozens() -> Vec<Self> {
         vec![Digit::C, Digit::X, Digit::I]
     }
