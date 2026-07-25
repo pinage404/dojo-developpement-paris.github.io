@@ -19,11 +19,11 @@ impl From<u16> for Roman {
             return Self::new(vec![Digit::I, Digit::V]);
         }
 
-        if decimal == 50 - 10 {
+        if decimal == Digit::L.value() - Digit::X.value() {
             return Self::new(vec![Digit::X, Digit::L]);
         }
 
-        if decimal == 500 - 100 {
+        if decimal == Digit::D.value() - Digit::C.value() {
             return Self::new(vec![Digit::C, Digit::D]);
         }
 
