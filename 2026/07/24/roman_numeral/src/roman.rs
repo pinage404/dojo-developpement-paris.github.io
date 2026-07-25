@@ -15,6 +15,8 @@ impl Roman {
 
 impl From<u16> for Roman {
     fn from(decimal: u16) -> Self {
+        let all_digits = Digit::all_digits();
+
         let digit = Digit::V;
         let digit_minus = Digit::I;
         if decimal == digit.value() - digit_minus.value() {
@@ -33,7 +35,6 @@ impl From<u16> for Roman {
             return Self::new(vec![digit_minus, digit]);
         }
 
-        let all_digits = Digit::all_digits();
         all_digits
             .into_iter()
             .find_map(|digit| {
