@@ -20,6 +20,14 @@ mod test {
     use speculoos::*;
 
     #[test]
+    fn tens() {
+        check_roman(1_000, "M");
+        check_roman(100, "C");
+        check_roman(10, "X");
+        check_roman(1, "I");
+    }
+
+    #[test]
     fn check_romans() {
         check_roman(1_000, "M");
         check_roman(100, "C");
