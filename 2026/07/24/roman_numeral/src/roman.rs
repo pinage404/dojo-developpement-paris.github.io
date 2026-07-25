@@ -17,10 +17,6 @@ impl From<u16> for Roman {
     fn from(decimal: u16) -> Self {
         let all_digits = Digit::all_digits();
 
-        if decimal == 41 {
-            return Self::new(vec![Digit::X, Digit::L]) + Self::from(decimal - 40);
-        }
-
         let digit = Digit::V;
         let digit_minus = *all_digits
             .get(all_digits.iter().position(|d| *d == digit).unwrap() + 1)
@@ -35,6 +31,10 @@ impl From<u16> for Roman {
             .unwrap();
         if decimal == digit.value() - digit_minus.value() {
             return Self::new(vec![digit_minus, digit]);
+        }
+
+        if decimal == 41 {
+            return Self::new(vec![Digit::X, Digit::L]) + Self::from(decimal - 40);
         }
 
         let digit = Digit::D;
