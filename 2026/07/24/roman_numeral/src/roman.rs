@@ -1,8 +1,8 @@
 use std::{fmt, ops::Add};
 
-use crate::digit::Digit;
+use crate::roman::digits::Digits;
 
-type Digits = Digit;
+mod digits;
 
 #[derive(Debug, PartialEq, Default)]
 pub struct Roman {
