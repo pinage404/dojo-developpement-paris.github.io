@@ -1,4 +1,4 @@
-use std::fmt;
+use std::{fmt, ops::Sub};
 
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub enum Digit {
@@ -53,5 +53,13 @@ impl Digit {
 impl fmt::Display for Digit {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "{}", self.to_symbol())
+    }
+}
+
+impl Sub<Digit> for u16 {
+    type Output = u16;
+
+    fn sub(self, other: Digit) -> Self::Output {
+        self - other.value()
     }
 }
