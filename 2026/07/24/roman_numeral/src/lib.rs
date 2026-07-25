@@ -45,6 +45,7 @@ mod test {
         check_roman(1_100, "MC");
         check_roman(110, "CX");
         check_roman(550, "DL");
+        check_roman(3333, "MMMCCCXXXIII");
     }
 
     fn check_roman(number: u16, roman: &str) {
