@@ -1,16 +1,11 @@
-use crate::roman::Roman;
-
 mod digit;
 
 mod roman;
 
-pub fn to_roman(arg: u16) -> Roman {
-    Roman::from(arg)
-}
-
 #[cfg(test)]
 mod test {
     use super::*;
+    use crate::roman::Roman;
     use speculoos::*;
 
     #[test]
@@ -43,6 +38,6 @@ mod test {
     }
 
     fn check_roman(number: u16, roman: &str) {
-        assert_that(&to_roman(number).to_string()).is_equal_to(String::from(roman));
+        assert_that(&Roman::from(number).to_string()).is_equal_to(String::from(roman));
     }
 }
