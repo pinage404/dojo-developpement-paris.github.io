@@ -21,12 +21,16 @@ impl From<u16> for Roman {
             return Self::new(vec![digit_minus, digit]);
         }
 
-        if decimal == Digit::L.value() - Digit::X.value() {
-            return Self::new(vec![Digit::X, Digit::L]);
+        let digit = Digit::L;
+        let digit_minus = Digit::X;
+        if decimal == digit.value() - digit_minus.value() {
+            return Self::new(vec![digit_minus, digit]);
         }
 
-        if decimal == Digit::D.value() - Digit::C.value() {
-            return Self::new(vec![Digit::C, Digit::D]);
+        let digit = Digit::D;
+        let digit_minus = Digit::C;
+        if decimal == digit.value() - digit_minus.value() {
+            return Self::new(vec![digit_minus, digit]);
         }
 
         let all_digits = Digit::all_digits();
