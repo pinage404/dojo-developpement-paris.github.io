@@ -14,7 +14,7 @@ pub fn to_roman(arg: u16) -> Roman {
         .into_iter()
         .find(|digit| arg >= digit.value())
         .unwrap_or(Digit::I);
-    Roman::from(digit) + to_roman(arg - digit.value())
+    Roman::from(digit) + to_roman(arg - digit)
 }
 
 #[cfg(test)]
