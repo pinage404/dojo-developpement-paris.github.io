@@ -19,6 +19,20 @@ impl From<Digit> for Roman {
     }
 }
 
+impl From<u16> for Roman {
+    fn from(decimal: u16) -> Self {
+        if decimal == 0 {
+            return Self::default();
+        }
+
+        let digit = Digit::all_digits()
+            .into_iter()
+            .find(|digit| decimal >= digit)
+            .unwrap_or(Digit::I);
+        Self::from(digit) + Self::from(decimal - digit)
+    }
+}
+
 impl fmt::Display for Roman {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         self.digits

@@ -1,4 +1,3 @@
-use crate::digit::Digit;
 use crate::roman::Roman;
 
 mod digit;
@@ -6,15 +5,7 @@ mod digit;
 mod roman;
 
 pub fn to_roman(arg: u16) -> Roman {
-    if arg == 0 {
-        return Roman::default();
-    }
-
-    let digit = Digit::all_digits()
-        .into_iter()
-        .find(|digit| arg >= digit)
-        .unwrap_or(Digit::I);
-    Roman::from(digit) + to_roman(arg - digit)
+    Roman::from(arg)
 }
 
 #[cfg(test)]
