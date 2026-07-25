@@ -5,6 +5,7 @@ pub mod roman;
 #[cfg(test)]
 mod test {
     use crate::roman::Roman;
+    use quickcheck_macros::quickcheck;
     use speculoos::*;
 
     #[test]
@@ -47,6 +48,11 @@ mod test {
     fn fourth_with_others_numbers() {
         check_to_roman(141, "CXLI");
     }
+
+    // #[quickcheck]
+    // fn decimal_roman_decimal(number: u16) {
+    //     assert_that((&Roman::from(number)).into()).is_equal_to(number);
+    // }
 
     fn check_to_roman(number: u16, roman: &str) {
         assert_that(&Roman::from(number).to_string()).is_equal_to(String::from(roman));
