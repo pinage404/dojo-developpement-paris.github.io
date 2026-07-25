@@ -65,14 +65,14 @@ impl Sub<Digit> for u16 {
     }
 }
 
-impl PartialEq<&Digit> for u16 {
-    fn eq(&self, other: &&Digit) -> bool {
+impl PartialEq<Digit> for u16 {
+    fn eq(&self, other: &Digit) -> bool {
         *self == other.value()
     }
 }
 
-impl PartialOrd<&Digit> for u16 {
-    fn partial_cmp(&self, other: &&Digit) -> Option<cmp::Ordering> {
+impl PartialOrd<Digit> for u16 {
+    fn partial_cmp(&self, other: &Digit) -> Option<cmp::Ordering> {
         self.partial_cmp(&other.value())
     }
 }
