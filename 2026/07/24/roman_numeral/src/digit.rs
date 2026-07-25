@@ -65,6 +65,14 @@ impl Sub<Digit> for u16 {
     }
 }
 
+impl Sub<Digit> for Digit {
+    type Output = u16;
+
+    fn sub(self, other: Digit) -> Self::Output {
+        self.value() - other.value()
+    }
+}
+
 impl PartialEq<Digit> for u16 {
     fn eq(&self, other: &Digit) -> bool {
         *self == other.value()
