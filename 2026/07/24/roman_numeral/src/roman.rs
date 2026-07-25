@@ -18,7 +18,9 @@ impl From<u16> for Roman {
         let all_digits = Digit::all_digits();
 
         let digit = Digit::V;
-        let digit_minus = *all_digits.get(5 + 1).unwrap();
+        let digit_minus = *all_digits
+            .get(dbg!(all_digits.iter().position(|d| *d == digit)).unwrap() + 1)
+            .unwrap();
         if decimal == digit.value() - digit_minus.value() {
             return Self::new(vec![digit_minus, digit]);
         }
