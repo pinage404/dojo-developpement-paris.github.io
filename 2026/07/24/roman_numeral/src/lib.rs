@@ -5,7 +5,7 @@ pub mod roman;
 #[cfg(test)]
 mod test {
     use crate::roman::Roman;
-    use quickcheck_macros::quickcheck;
+    // use quickcheck_macros::quickcheck;
     use speculoos::*;
 
     #[test]
