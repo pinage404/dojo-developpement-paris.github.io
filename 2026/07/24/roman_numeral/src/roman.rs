@@ -103,7 +103,7 @@ impl TryFrom<&str> for Roman {
             .chars()
             .into_iter()
             .map(|first_char| Digit::try_from(first_char).map(|digit| Self::new(vec![digit])));
-        return romans.try_fold(Self::default(), |acc, roman| roman.clone().map(|r| acc + r));
+        romans.try_fold(Self::default(), |acc, roman| roman.clone().map(|r| acc + r))
     }
 }
 
