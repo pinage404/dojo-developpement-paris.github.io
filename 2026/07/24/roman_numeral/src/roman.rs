@@ -126,7 +126,7 @@ impl From<Roman> for u16 {
             Digit::L => todo!(),
             Digit::X => 10,
             Digit::V => todo!(),
-            Digit::I => 1,
+            digit => digit.value(),
         }
     }
 }

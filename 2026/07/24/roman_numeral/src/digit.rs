@@ -41,7 +41,7 @@ fn is_dozen(number: u16) -> bool {
 }
 
 impl Digit {
-    fn value(self) -> u16 {
+    pub(super) fn value(self) -> u16 {
         match self {
             Self::M => 1_000,
             Self::D => 500,
