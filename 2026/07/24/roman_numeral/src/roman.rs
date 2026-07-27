@@ -2,7 +2,7 @@ use std::{fmt, ops::Add};
 
 use crate::digit::Digit;
 
-#[derive(Debug, PartialEq, Default)]
+#[derive(Debug, PartialEq, Default, Clone)]
 pub struct Roman {
     digits: Vec<Digit>,
 }
@@ -102,14 +102,13 @@ impl TryFrom<&str> for Roman {
         if value == "XI" {
             let mut chars = value.chars();
             let first_char = chars.next().unwrap();
-            let first_digit = Digit::try_from(first_char)
-                .map(|digit| Self::new(vec![digit]))
-                .unwrap();
+            let first_digit = Digit::try_from(first_char).map(|digit| Self::new(vec![digit]));
             let second_char = chars.next().unwrap();
-            let second_digit = Digit::try_from(second_char)
-                .map(|digit| Self::new(vec![digit]))
-                .unwrap();
-            return Ok(first_digit + second_digit);
+            let second_digit = Digit::try_from(second_char).map(|digit| Self::new(vec![digit]));
+            let romans = vec![first_digit, second_digit];
+            return romans
+                .iter()
+                .try_fold(Self::default(), |acc, roman| roman.clone().map(|r| acc + r));
         }
 
         let char = value.chars().next().unwrap();
