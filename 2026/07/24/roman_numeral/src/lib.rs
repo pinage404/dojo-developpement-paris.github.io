@@ -38,16 +38,21 @@ mod test {
     }
 
     #[test]
-    fn fourth() {
+    fn four_ish() {
         check_to_roman(4, "IV");
         check_to_roman(40, "XL");
         check_to_roman(400, "CD");
     }
 
     #[test]
-    fn fourth_with_others_numbers() {
+    fn four_ish_with_others_numbers() {
         check_to_roman(141, "CXLI");
         check_to_roman(3444, "MMMCDXLIV");
+    }
+
+    #[test]
+    fn nine_ish() {
+        check_to_roman(9, "IX");
     }
 
     // #[quickcheck]
