@@ -54,7 +54,7 @@ impl Roman {
             })
             .filter(|(_digit_minus, digit_minus_position)| digit_minus_position != &0)
             .filter_map(|(digit_minus, digit_minus_position)| {
-                (*dozens)
+                dozens
                     .get(digit_minus_position - 1)
                     .map(|&digit| (digit_minus, digit))
             })
