@@ -37,10 +37,8 @@ impl Roman {
                 let digit_minus_position = dozens.iter().position(|d| *d == digit_minus).unwrap();
                 (digit_minus, digit_minus_position)
             })
+            .filter(|(_digit_minus, digit_minus_position)| digit_minus_position != &0)
             .find_map(|(digit_minus, digit_minus_position)| {
-                if digit_minus_position == 0 {
-                    return None;
-                }
                 let digit = *dozens.get(digit_minus_position - 1).unwrap();
                 (decimal >= digit - digit_minus && decimal < digit).then(|| {
                     Self::new(vec![digit_minus, digit])
