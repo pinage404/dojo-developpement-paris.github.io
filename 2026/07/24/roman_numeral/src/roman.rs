@@ -32,7 +32,10 @@ impl From<u16> for Roman {
             .or_else(|| {
                 let digit_minus = Digit::I;
                 let digit = Digit::X;
-                (decimal == digit - digit_minus).then(|| Self::new(vec![digit_minus, digit]))
+                (decimal >= digit - digit_minus && decimal < digit).then(|| {
+                    Self::new(vec![digit_minus, digit])
+                        + Self::from(decimal - (digit - digit_minus))
+                })
             })
             .or_else(|| {
                 let digit_minus = Digit::X;
@@ -45,7 +48,10 @@ impl From<u16> for Roman {
             .or_else(|| {
                 let digit_minus = Digit::C;
                 let digit = Digit::M;
-                (decimal == digit - digit_minus).then(|| Self::new(vec![digit_minus, digit]))
+                (decimal >= digit - digit_minus && decimal < digit).then(|| {
+                    Self::new(vec![digit_minus, digit])
+                        + Self::from(decimal - (digit - digit_minus))
+                })
             })
             .or_else(|| {
                 all_digits.into_iter().find_map(|digit| {

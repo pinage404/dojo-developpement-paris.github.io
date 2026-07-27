@@ -60,6 +60,7 @@ mod test {
     #[test]
     fn nine_ish_with_others_numbers() {
         check_to_roman(191, "CXCI");
+        check_to_roman(3999, "MMMCMXCIX");
     }
 
     // #[quickcheck]
