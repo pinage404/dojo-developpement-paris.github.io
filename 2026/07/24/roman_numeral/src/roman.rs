@@ -44,12 +44,10 @@ impl Roman {
 
 impl From<u16> for Roman {
     fn from(decimal: u16) -> Self {
-        let all_digits = Digit::all_digits();
-
         Roman::find_four_ish(decimal)
             .or_else(|| Roman::find_nine_ish(decimal))
             .or_else(|| {
-                all_digits.into_iter().find_map(|digit| {
+                Digit::all_digits().into_iter().find_map(|digit| {
                     (decimal >= digit).then(|| Self::new(vec![digit]) + Self::from(decimal - digit))
                 })
             })
