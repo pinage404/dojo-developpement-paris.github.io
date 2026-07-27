@@ -99,16 +99,11 @@ impl TryFrom<&str> for Roman {
     type Error = String;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
-        if value == "XI" {
-            let mut romans = value
-                .chars()
-                .into_iter()
-                .map(|first_char| Digit::try_from(first_char).map(|digit| Self::new(vec![digit])));
-            return romans.try_fold(Self::default(), |acc, roman| roman.clone().map(|r| acc + r));
-        }
-
-        let char = value.chars().next().unwrap();
-        Digit::try_from(char).map(|digit| Self::new(vec![digit]))
+        let mut romans = value
+            .chars()
+            .into_iter()
+            .map(|first_char| Digit::try_from(first_char).map(|digit| Self::new(vec![digit])));
+        return romans.try_fold(Self::default(), |acc, roman| roman.clone().map(|r| acc + r));
     }
 }
 
