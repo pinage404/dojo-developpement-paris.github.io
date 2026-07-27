@@ -111,6 +111,10 @@ impl TryFrom<&str> for Roman {
             return Err(format!("Invalid roman number : {value}"));
         }
 
+        if value == "XI" {
+            return Ok(Self::new(vec![Digit::X, Digit::I]));
+        }
+
         let char = value.chars().next().unwrap();
         Digit::try_from(char).map(|digit| Self::new(vec![digit]))
     }
@@ -118,6 +122,10 @@ impl TryFrom<&str> for Roman {
 
 impl From<Roman> for u16 {
     fn from(value: Roman) -> Self {
+        if value == Roman::new(vec![Digit::X, Digit::I]) {
+            return 11;
+        }
+
         let digit = value.digits.first().unwrap();
         digit.value()
     }

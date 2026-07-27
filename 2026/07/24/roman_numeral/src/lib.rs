@@ -83,6 +83,11 @@ mod test {
         }
 
         #[test]
+        fn several_numbers() {
+            check_from_roman("XI", 11);
+        }
+
+        #[test]
         fn can_not_parse_invalid_roman_number() {
             assert_that(&Roman::try_from("invalid")).is_err();
         }
