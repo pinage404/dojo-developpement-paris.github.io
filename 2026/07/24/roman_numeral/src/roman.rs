@@ -15,7 +15,7 @@ impl Roman {
     fn find_four_ish(decimal: u16) -> Option<Roman> {
         let all_digits = Digit::all_digits();
 
-        Digit::dozens().clone().into_iter().find_map(|digit_minus| {
+        Digit::dozens().into_iter().find_map(|digit_minus| {
             let digit_minus_position = all_digits.iter().position(|d| *d == digit_minus).unwrap();
             if digit_minus_position == 0 {
                 return None;
@@ -29,6 +29,7 @@ impl Roman {
 
     fn find_nine_ish(decimal: u16) -> Option<Roman> {
         let dozens = Digit::dozens();
+
         dozens.clone().into_iter().find_map(|digit_minus| {
             let digit_minus_position = dozens.iter().position(|d| *d == digit_minus).unwrap();
             if digit_minus_position == 0 {
