@@ -78,12 +78,16 @@ mod test {
 
         #[test]
         fn simple_number() {
-            assert_that(&u16::from(Roman::try_from("I").unwrap())).is_equal_to(1);
+            check_from_roman("I", 1);
         }
 
         #[test]
         fn can_not_parse_invalid_roman_number() {
             assert_that(&Roman::try_from("invalid")).is_err();
+        }
+
+        fn check_from_roman(roman: &str, number: u16) {
+            assert_that(&u16::from(Roman::try_from(roman).unwrap())).is_equal_to(number);
         }
     }
     // #[quickcheck]
