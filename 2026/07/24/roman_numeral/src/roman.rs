@@ -100,7 +100,12 @@ impl TryFrom<&str> for Roman {
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
         if value == "XI" {
-            return Ok(Self::new(vec![Digit::X, Digit::I]));
+            let mut chars = value.chars();
+            let first_char = chars.next().unwrap();
+            let first_digit = Digit::try_from(first_char)
+                .map(|digit| Self::new(vec![digit]))
+                .unwrap();
+            return Ok(first_digit + Self::new(vec![Digit::I]));
         }
 
         let char = value.chars().next().unwrap();
