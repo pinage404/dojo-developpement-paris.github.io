@@ -83,6 +83,14 @@ impl Add<Digit> for u16 {
     }
 }
 
+impl Add<Digit> for i32 {
+    type Output = i32;
+
+    fn add(self, digit: Digit) -> Self::Output {
+        self + i32::from(digit.value())
+    }
+}
+
 impl Sub<Digit> for u16 {
     type Output = u16;
 
