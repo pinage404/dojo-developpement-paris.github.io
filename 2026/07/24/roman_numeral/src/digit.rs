@@ -1,4 +1,7 @@
-use std::{cmp, fmt, ops::Sub};
+use std::{
+    cmp, fmt,
+    ops::{Add, Sub},
+};
 
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub(super) enum Digit {
@@ -76,6 +79,14 @@ impl Digit {
 impl fmt::Display for Digit {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "{}", self.to_symbol())
+    }
+}
+
+impl Add<Digit> for u16 {
+    type Output = u16;
+
+    fn add(self, digit: Digit) -> Self::Output {
+        self + digit.value()
     }
 }
 

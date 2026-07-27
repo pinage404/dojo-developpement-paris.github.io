@@ -126,7 +126,6 @@ impl From<Roman> for u16 {
             return 11;
         }
 
-        let digit = value.digits.first().unwrap();
-        digit.value()
+        value.digits.iter().fold(0, |acc, &digit| acc + digit)
     }
 }
