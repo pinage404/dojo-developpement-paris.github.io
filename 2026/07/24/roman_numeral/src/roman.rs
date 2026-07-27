@@ -42,7 +42,11 @@ impl From<u16> for Roman {
                         + Self::from(decimal - (digit - digit_minus))
                 })
             })
-            .or_else(|| (decimal == 900).then(|| Self::new(vec![Digit::C, Digit::M])))
+            .or_else(|| {
+                let digit_minus = Digit::C;
+                let digit = Digit::M;
+                (decimal == digit - digit_minus).then(|| Self::new(vec![digit_minus, digit]))
+            })
             .or_else(|| {
                 all_digits.into_iter().find_map(|digit| {
                     (decimal >= digit).then(|| Self::new(vec![digit]) + Self::from(decimal - digit))
