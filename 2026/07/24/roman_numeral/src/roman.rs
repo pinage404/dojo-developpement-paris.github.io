@@ -34,39 +34,17 @@ impl From<u16> for Roman {
                 })
             })
             .or_else(|| {
-                let digit_minus = Digit::I;
-                let digit_minus_position = dozens.iter().position(|d| *d == digit_minus).unwrap();
-                if digit_minus_position == 0 {
-                    return None;
-                }
-                let digit = *dozens.get(digit_minus_position - 1).unwrap();
-                (decimal >= digit - digit_minus && decimal < digit).then(|| {
-                    Self::new(vec![digit_minus, digit])
-                        + Self::from(decimal - (digit - digit_minus))
-                })
-            })
-            .or_else(|| {
-                let digit_minus = Digit::X;
-                let digit_minus_position = dozens.iter().position(|d| *d == digit_minus).unwrap();
-                if digit_minus_position == 0 {
-                    return None;
-                }
-                let digit = *dozens.get(digit_minus_position - 1).unwrap();
-                (decimal >= digit - digit_minus && decimal < digit).then(|| {
-                    Self::new(vec![digit_minus, digit])
-                        + Self::from(decimal - (digit - digit_minus))
-                })
-            })
-            .or_else(|| {
-                let digit_minus = Digit::C;
-                let digit_minus_position = dozens.iter().position(|d| *d == digit_minus).unwrap();
-                if digit_minus_position == 0 {
-                    return None;
-                }
-                let digit = *dozens.get(digit_minus_position - 1).unwrap();
-                (decimal >= digit - digit_minus && decimal < digit).then(|| {
-                    Self::new(vec![digit_minus, digit])
-                        + Self::from(decimal - (digit - digit_minus))
+                dozens.clone().into_iter().find_map(|digit_minus| {
+                    let digit_minus_position =
+                        dozens.iter().position(|d| *d == digit_minus).unwrap();
+                    if digit_minus_position == 0 {
+                        return None;
+                    }
+                    let digit = *dozens.get(digit_minus_position - 1).unwrap();
+                    (decimal >= digit - digit_minus && decimal < digit).then(|| {
+                        Self::new(vec![digit_minus, digit])
+                            + Self::from(decimal - (digit - digit_minus))
+                    })
                 })
             })
             .or_else(|| {
