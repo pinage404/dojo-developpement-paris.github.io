@@ -29,15 +29,19 @@ impl Digit {
             .into_iter()
             .filter(|digit| {
                 let number = digit.value();
-                match number {
-                    1_000 => true,
-                    100 => true,
-                    10 => true,
-                    1 => true,
-                    _ => false,
-                }
+                is_dozen(number)
             })
             .collect()
+    }
+}
+
+fn is_dozen(number: u16) -> bool {
+    match number {
+        1_000 => true,
+        100 => true,
+        10 => true,
+        1 => true,
+        _ => false,
     }
 }
 
