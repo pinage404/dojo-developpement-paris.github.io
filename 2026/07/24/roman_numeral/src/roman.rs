@@ -112,11 +112,7 @@ impl TryFrom<&str> for Roman {
         }
 
         let char = value.chars().next().unwrap();
-        match char {
-            'X' => Ok(Roman::from(10)),
-            'I' => Ok(Roman::from(1)),
-            _ => Err(format!("Invalid roman number : {char}")),
-        }
+        Digit::try_from(char).map(|digit| Self::new(vec![digit]))
     }
 }
 

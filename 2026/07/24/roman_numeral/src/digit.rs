@@ -106,3 +106,15 @@ impl PartialOrd<Digit> for u16 {
         self.partial_cmp(&other.value())
     }
 }
+
+impl TryFrom<char> for Digit {
+    type Error = String;
+
+    fn try_from(value: char) -> Result<Self, Self::Error> {
+        match value {
+            'X' => Ok(Digit::X),
+            'I' => Ok(Digit::I),
+            _ => Err(format!("Invalid roman number : {value}")),
+        }
+    }
+}
