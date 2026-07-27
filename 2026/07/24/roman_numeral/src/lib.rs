@@ -87,6 +87,11 @@ mod test {
         }
 
         #[test]
+        fn four_ish() {
+            check_from_roman("IV", 4);
+        }
+
+        #[test]
         fn can_not_parse_invalid_roman_number() {
             assert_that(&Roman::try_from("invalid")).is_err();
         }
