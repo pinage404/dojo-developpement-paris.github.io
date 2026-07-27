@@ -5,7 +5,6 @@ pub mod roman;
 #[cfg(test)]
 mod test {
     use crate::roman::Roman;
-    // use quickcheck_macros::quickcheck;
     use speculoos::*;
 
     mod to_roman {
@@ -96,8 +95,22 @@ mod test {
             assert_that(&u16::from(Roman::try_from(roman).unwrap())).is_equal_to(number);
         }
     }
-    // #[quickcheck]
-    // fn decimal_roman_decimal(number: u16) {
-    //     assert_that((&Roman::from(number)).into()).is_equal_to(number);
+
+    // mod both_way {
+    //     use quickcheck_macros::quickcheck;
+
+    //     use super::*;
+
+    //     #[quickcheck]
+    //     fn decimal_roman_decimal(number: u16) {
+    //         let roman_from_decimal = Roman::from(number);
+
+    //         let roman_from_string =
+    //             Roman::try_from(roman_from_decimal.to_string().as_str()).unwrap();
+
+    //         let decimal_from_roman = u16::from(roman_from_string);
+
+    //         assert_that(&decimal_from_roman).is_equal_to(number);
+    //     }
     // }
 }
