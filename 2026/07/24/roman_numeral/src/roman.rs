@@ -102,11 +102,11 @@ impl TryFrom<&str> for Roman {
         value
             .chars()
             .all(|char| {
-                Digit::all_digits()
+                let all_valid_symbol = Digit::all_digits()
                     .iter()
                     .map(|digit| digit.to_symbol())
-                    .collect::<String>()
-                    .contains(char)
+                    .collect::<String>();
+                all_valid_symbol.contains(char)
             })
             .then(|| match value {
                 "X" => Roman::from(10),
