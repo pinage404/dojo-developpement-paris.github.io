@@ -98,8 +98,18 @@ impl Add for Roman {
 impl TryFrom<&str> for Roman {
     type Error = ();
 
-    fn try_from(_value: &str) -> Result<Self, Self::Error> {
-        Ok(Roman::default())
+    fn try_from(value: &str) -> Result<Self, Self::Error> {
+        value
+            .chars()
+            .all(|char| {
+                Digit::all_digits()
+                    .iter()
+                    .map(|digit| digit.to_symbol())
+                    .collect::<String>()
+                    .contains(char)
+            })
+            .then(Roman::default)
+            .ok_or(())
     }
 }
 

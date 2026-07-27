@@ -53,7 +53,7 @@ impl Digit {
         }
     }
 
-    fn to_symbol(self) -> char {
+    pub fn to_symbol(self) -> char {
         match self {
             Self::M => 'M',
             Self::D => 'D',
