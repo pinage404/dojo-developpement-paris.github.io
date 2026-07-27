@@ -101,7 +101,6 @@ impl TryFrom<&str> for Roman {
     fn try_from(value: &str) -> Result<Self, Self::Error> {
         value
             .chars()
-            .into_iter()
             .map(|char| Digit::try_from(char).map(|digit| Self::new(vec![digit])))
             .try_fold(Self::default(), |acc, maybe_roman| {
                 maybe_roman.map(|roman| acc + roman)
@@ -114,6 +113,11 @@ impl From<Roman> for u16 {
         if value == Roman::new(vec![Digit::I, Digit::V]) {
             return 4;
         }
-        value.digits.iter().fold(0, |acc, &digit| acc + digit)
+        value
+            .digits
+            .iter()
+            .enumerate()
+            .map(|(index, digit)| (digit, value.digits.get(index + 1)))
+            .fold(0, |acc, (&digit, _maybe_next_digit)| acc + digit)
     }
 }
