@@ -108,9 +108,11 @@ impl TryFrom<&str> for Roman {
     }
 }
 
-impl From<Roman> for u16 {
-    fn from(value: Roman) -> Self {
-        value
+impl TryFrom<Roman> for u16 {
+    type Error = String;
+
+    fn try_from(value: Roman) -> Result<Self, Self::Error> {
+        Ok(value
             .digits
             .iter()
             .enumerate()
@@ -123,6 +125,6 @@ impl From<Roman> for u16 {
                 },
             )
             .try_into()
-            .unwrap()
+            .unwrap())
     }
 }

@@ -98,7 +98,8 @@ mod test {
         }
 
         fn check_from_roman(roman: &str, number: u16) {
-            assert_that(&u16::from(Roman::try_from(roman).unwrap())).is_equal_to(number);
+            assert_that(&u16::try_from(Roman::try_from(roman).unwrap()).unwrap())
+                .is_equal_to(number);
         }
     }
 
@@ -114,7 +115,7 @@ mod test {
             let roman_from_string =
                 Roman::try_from(roman_from_decimal.to_string().as_str()).unwrap();
 
-            let decimal_from_roman = u16::from(roman_from_string);
+            let decimal_from_roman = u16::try_from(roman_from_string).unwrap();
 
             assert_that(&decimal_from_roman).is_equal_to(number);
         }
