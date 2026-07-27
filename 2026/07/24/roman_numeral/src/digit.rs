@@ -112,8 +112,13 @@ impl TryFrom<char> for Digit {
 
     fn try_from(value: char) -> Result<Self, Self::Error> {
         match value {
-            'X' => Ok(Digit::X),
-            'I' => Ok(Digit::I),
+            'M' => Ok(Self::M),
+            'D' => Ok(Self::D),
+            'C' => Ok(Self::C),
+            'L' => Ok(Self::L),
+            'X' => Ok(Self::X),
+            'V' => Ok(Self::V),
+            'I' => Ok(Self::I),
             _ => Err(format!("Invalid roman number : {value}")),
         }
     }
