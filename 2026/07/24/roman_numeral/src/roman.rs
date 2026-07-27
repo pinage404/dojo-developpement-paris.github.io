@@ -115,7 +115,7 @@ impl TryFrom<&str> for Roman {
         match char {
             'X' => Ok(Roman::from(10)),
             'I' => Ok(Roman::from(1)),
-            _ => todo!(),
+            _ => Err(format!("Invalid roman number : {char}")),
         }
     }
 }
