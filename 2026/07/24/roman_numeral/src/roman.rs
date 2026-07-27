@@ -1,7 +1,4 @@
-use std::{
-    fmt::{self},
-    ops::Add,
-};
+use std::{fmt, ops::Add};
 
 use crate::digit::Digit;
 
