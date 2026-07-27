@@ -102,21 +102,21 @@ mod test {
         }
     }
 
-    // mod both_way {
-    //     use quickcheck_macros::quickcheck;
+    mod both_way {
+        use quickcheck_macros::quickcheck;
 
-    //     use super::*;
+        use super::*;
 
-    //     #[quickcheck]
-    //     fn decimal_roman_decimal(number: u16) {
-    //         let roman_from_decimal = Roman::from(number);
+        #[quickcheck]
+        fn decimal_roman_decimal(number: u16) {
+            let roman_from_decimal = Roman::from(number);
 
-    //         let roman_from_string =
-    //             Roman::try_from(roman_from_decimal.to_string().as_str()).unwrap();
+            let roman_from_string =
+                Roman::try_from(roman_from_decimal.to_string().as_str()).unwrap();
 
-    //         let decimal_from_roman = u16::from(roman_from_string);
+            let decimal_from_roman = u16::from(roman_from_string);
 
-    //         assert_that(&decimal_from_roman).is_equal_to(number);
-    //     }
-    // }
+            assert_that(&decimal_from_roman).is_equal_to(number);
+        }
+    }
 }
