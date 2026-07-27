@@ -120,12 +120,6 @@ impl TryFrom<&str> for Roman {
 impl From<Roman> for u16 {
     fn from(value: Roman) -> Self {
         match value.digits.first().unwrap() {
-            Digit::M => todo!(),
-            Digit::D => todo!(),
-            Digit::C => todo!(),
-            Digit::L => todo!(),
-            Digit::X => 10,
-            Digit::V => todo!(),
             digit => digit.value(),
         }
     }
