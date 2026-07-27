@@ -28,7 +28,7 @@ impl Roman {
             .filter_map(|digit_minus| {
                 all_digits
                     .iter()
-                    .position(|d| *d == digit_minus)
+                    .position(|d| d == &digit_minus)
                     .map(|digit_minus_position| (digit_minus, digit_minus_position))
             })
             .filter(|(_digit_minus, digit_minus_position)| digit_minus_position != &0)
