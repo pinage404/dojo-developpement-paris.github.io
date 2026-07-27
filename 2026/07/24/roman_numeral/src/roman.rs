@@ -27,12 +27,11 @@ impl Roman {
                 let digit = *all_digits.get(digit_minus_position - 1).unwrap();
                 (digit_minus, digit)
             })
-            .find_map(|(digit_minus, digit)| {
-                (decimal >= digit - digit_minus && decimal < digit).then(|| {
-                    Self::new(vec![digit_minus, digit])
-                        + Self::from(decimal - (digit - digit_minus))
-                })
+            .filter(|(digit_minus, digit)| decimal >= *digit - *digit_minus && decimal < *digit)
+            .map(|(digit_minus, digit)| {
+                Self::new(vec![digit_minus, digit]) + Self::from(decimal - (digit - digit_minus))
             })
+            .next()
     }
 
     fn find_nine_ish(decimal: u16) -> Option<Roman> {
