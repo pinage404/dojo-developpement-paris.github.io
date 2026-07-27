@@ -32,9 +32,9 @@ impl Roman {
                     .map(|digit_minus_position| (digit_minus, digit_minus_position))
             })
             .filter(|(_digit_minus, digit_minus_position)| digit_minus_position != &0)
-            .map(|(digit_minus, digit_minus_position)| {
+            .filter_map(|(digit_minus, digit_minus_position)| {
                 let digit = *all_digits.get(digit_minus_position - 1).unwrap();
-                (digit_minus, digit)
+                Some((digit_minus, digit))
             })
             .find_map(Self::find_number_ish(decimal))
     }
