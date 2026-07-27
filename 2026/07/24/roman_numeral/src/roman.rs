@@ -15,16 +15,21 @@ impl Roman {
     fn find_four_ish(decimal: u16) -> Option<Roman> {
         let all_digits = Digit::all_digits();
 
-        Digit::dozens().into_iter().find_map(|digit_minus| {
-            let digit_minus_position = all_digits.iter().position(|d| *d == digit_minus).unwrap();
-            if digit_minus_position == 0 {
-                return None;
-            }
-            let digit = *all_digits.get(digit_minus_position - 1).unwrap();
-            (decimal >= digit - digit_minus && decimal < digit).then(|| {
-                Self::new(vec![digit_minus, digit]) + Self::from(decimal - (digit - digit_minus))
+        Digit::dozens()
+            .into_iter()
+            .map(|digit_minus| {
+                let digit_minus_position =
+                    all_digits.iter().position(|d| *d == digit_minus).unwrap();
+                (digit_minus, digit_minus_position)
             })
-        })
+            .filter(|(_digit_minus, digit_minus_position)| digit_minus_position != &0)
+            .find_map(|(digit_minus, digit_minus_position)| {
+                let digit = *all_digits.get(digit_minus_position - 1).unwrap();
+                (decimal >= digit - digit_minus && decimal < digit).then(|| {
+                    Self::new(vec![digit_minus, digit])
+                        + Self::from(decimal - (digit - digit_minus))
+                })
+            })
     }
 
     fn find_nine_ish(decimal: u16) -> Option<Roman> {
