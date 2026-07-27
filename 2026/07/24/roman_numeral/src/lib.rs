@@ -57,6 +57,11 @@ mod test {
         check_to_roman(900, "CM");
     }
 
+    #[test]
+    fn nine_ish_with_others_numbers() {
+        check_to_roman(191, "CXCI");
+    }
+
     // #[quickcheck]
     // fn decimal_roman_decimal(number: u16) {
     //     assert_that((&Roman::from(number)).into()).is_equal_to(number);
