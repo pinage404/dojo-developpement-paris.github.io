@@ -11,6 +11,20 @@ impl Roman {
     fn new(digits: Vec<Digit>) -> Self {
         Self { digits }
     }
+
+    fn find_nine_ish(decimal: u16) -> Option<Roman> {
+        let dozens = Digit::dozens();
+        dozens.clone().into_iter().find_map(|digit_minus| {
+            let digit_minus_position = dozens.iter().position(|d| *d == digit_minus).unwrap();
+            if digit_minus_position == 0 {
+                return None;
+            }
+            let digit = *dozens.get(digit_minus_position - 1).unwrap();
+            (decimal >= digit - digit_minus && decimal < digit).then(|| {
+                Self::new(vec![digit_minus, digit]) + Self::from(decimal - (digit - digit_minus))
+            })
+        })
+    }
 }
 
 impl From<u16> for Roman {
@@ -33,20 +47,7 @@ impl From<u16> for Roman {
                         + Self::from(decimal - (digit - digit_minus))
                 })
             })
-            .or_else(|| {
-                dozens.clone().into_iter().find_map(|digit_minus| {
-                    let digit_minus_position =
-                        dozens.iter().position(|d| *d == digit_minus).unwrap();
-                    if digit_minus_position == 0 {
-                        return None;
-                    }
-                    let digit = *dozens.get(digit_minus_position - 1).unwrap();
-                    (decimal >= digit - digit_minus && decimal < digit).then(|| {
-                        Self::new(vec![digit_minus, digit])
-                            + Self::from(decimal - (digit - digit_minus))
-                    })
-                })
-            })
+            .or_else(|| Roman::find_nine_ish(decimal))
             .or_else(|| {
                 all_digits.into_iter().find_map(|digit| {
                     (decimal >= digit).then(|| Self::new(vec![digit]) + Self::from(decimal - digit))
