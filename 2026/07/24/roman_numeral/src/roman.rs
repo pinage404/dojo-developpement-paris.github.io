@@ -1,4 +1,7 @@
-use std::{fmt, ops::Add};
+use std::{
+    fmt,
+    ops::{Add, Not},
+};
 
 use crate::digit::Digit;
 
@@ -100,15 +103,20 @@ impl TryFrom<&str> for Roman {
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
         let all_valid_symbol = Digit::all_valid_symbol();
-        value
+        if value
             .chars()
             .all(|char| all_valid_symbol.contains(char))
-            .then(|| match value {
-                "X" => Roman::from(10),
-                "I" => Roman::from(1),
-                _ => todo!(),
-            })
-            .ok_or(format!("Invalid roman number : {value}"))
+            .not()
+        {
+            return Err(format!("Invalid roman number : {value}"));
+        }
+
+        let char = value.chars().next().unwrap();
+        match char {
+            'X' => Ok(Roman::from(10)),
+            'I' => Ok(Roman::from(1)),
+            _ => todo!(),
+        }
     }
 }
 
