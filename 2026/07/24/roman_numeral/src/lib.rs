@@ -93,7 +93,7 @@ mod test {
         }
 
         #[test]
-        fn can_not_parse_invalid_roman_number() {
+        fn can_not_parse_invalid_symbol() {
             assert_that(&Roman::try_from("invalid")).is_err();
         }
 

@@ -1,4 +1,4 @@
-use std::{fmt, ops::Add};
+use std::{fmt, num::TryFromIntError, ops::Add};
 
 use crate::digit::Digit;
 
@@ -109,10 +109,10 @@ impl TryFrom<&str> for Roman {
 }
 
 impl TryFrom<Roman> for u16 {
-    type Error = String;
+    type Error = TryFromIntError;
 
     fn try_from(value: Roman) -> Result<Self, Self::Error> {
-        Ok(value
+        value
             .digits
             .iter()
             .enumerate()
@@ -125,6 +125,5 @@ impl TryFrom<Roman> for u16 {
                 },
             )
             .try_into()
-            .unwrap())
     }
 }
