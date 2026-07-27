@@ -28,15 +28,12 @@ impl From<u16> for Roman {
                         + Self::from(decimal - (digit - digit_minus))
                 })
             })
-            .unwrap_or_else(|| {
-                all_digits
-                    .into_iter()
-                    .find_map(|digit| {
-                        (decimal >= digit)
-                            .then(|| Self::new(vec![digit]) + Self::from(decimal - digit))
-                    })
-                    .unwrap_or(Self::default())
+            .or_else(|| {
+                all_digits.into_iter().find_map(|digit| {
+                    (decimal >= digit).then(|| Self::new(vec![digit]) + Self::from(decimal - digit))
+                })
             })
+            .unwrap_or(Self::default())
     }
 }
 
