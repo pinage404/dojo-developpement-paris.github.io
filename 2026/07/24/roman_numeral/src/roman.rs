@@ -102,15 +102,6 @@ impl TryFrom<&str> for Roman {
     type Error = String;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
-        let all_valid_symbol = Digit::all_valid_symbol();
-        if value
-            .chars()
-            .all(|char| all_valid_symbol.contains(char))
-            .not()
-        {
-            return Err(format!("Invalid roman number : {value}"));
-        }
-
         if value == "XI" {
             return Ok(Self::new(vec![Digit::X, Digit::I]));
         }
