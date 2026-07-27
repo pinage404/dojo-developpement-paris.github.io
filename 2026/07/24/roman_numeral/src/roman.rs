@@ -53,11 +53,7 @@ impl Roman {
                 let digit = *dozens.get(digit_minus_position - 1).unwrap();
                 (digit_minus, digit)
             })
-            .filter(|(digit_minus, digit)| decimal >= *digit - *digit_minus && decimal < *digit)
-            .map(|(digit_minus, digit)| {
-                Self::new(vec![digit_minus, digit]) + Self::from(decimal - (digit - digit_minus))
-            })
-            .next()
+            .find_map(Self::find_number_ish(decimal))
     }
 
     fn find_normal_number(decimal: u16) -> Option<Roman> {
