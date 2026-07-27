@@ -27,12 +27,15 @@ impl Digit {
     pub(super) fn dozens() -> Vec<Self> {
         Self::all_digits()
             .into_iter()
-            .filter(|digit| match digit.value() {
-                1_000 => true,
-                100 => true,
-                10 => true,
-                1 => true,
-                _ => false,
+            .filter(|digit| {
+                let number = digit.value();
+                match number {
+                    1_000 => true,
+                    100 => true,
+                    10 => true,
+                    1 => true,
+                    _ => false,
+                }
             })
             .collect()
     }
