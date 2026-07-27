@@ -40,8 +40,6 @@ fn is_dozen(number: u16) -> bool {
         is_dozen(number / 10)
     } else {
         match number {
-            1_000 => is_dozen(number / 10),
-            100 => is_dozen(number / 10),
             10 => true,
             1 => true,
             _ => false,
