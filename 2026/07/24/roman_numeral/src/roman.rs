@@ -1,4 +1,7 @@
-use std::{fmt, ops::Add};
+use std::{
+    fmt::{self},
+    ops::Add,
+};
 
 use crate::digit::Digit;
 
@@ -96,7 +99,7 @@ impl Add for Roman {
 }
 
 impl TryFrom<&str> for Roman {
-    type Error = ();
+    type Error = String;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
         value
@@ -109,7 +112,7 @@ impl TryFrom<&str> for Roman {
                     .contains(char)
             })
             .then(Roman::default)
-            .ok_or(())
+            .ok_or(format!("Invalid roman number : {value}"))
     }
 }
 
