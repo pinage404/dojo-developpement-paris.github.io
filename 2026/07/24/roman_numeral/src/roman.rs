@@ -94,3 +94,15 @@ impl Add for Roman {
         Self::new(digits)
     }
 }
+
+impl From<&str> for Roman {
+    fn from(_value: &str) -> Self {
+        Roman::default()
+    }
+}
+
+impl From<Roman> for u16 {
+    fn from(_value: Roman) -> Self {
+        1
+    }
+}

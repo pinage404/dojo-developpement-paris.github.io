@@ -71,6 +71,14 @@ mod test {
         }
     }
 
+    mod from_roman {
+        use super::*;
+
+        #[test]
+        fn simple_number() {
+            assert_that(&u16::from(Roman::from("I"))).is_equal_to(1);
+        }
+    }
     // #[quickcheck]
     // fn decimal_roman_decimal(number: u16) {
     //     assert_that((&Roman::from(number)).into()).is_equal_to(number);
