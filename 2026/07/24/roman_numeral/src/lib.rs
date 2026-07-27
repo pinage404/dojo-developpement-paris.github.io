@@ -89,6 +89,7 @@ mod test {
         #[test]
         fn four_ish() {
             check_from_roman("IV", 4);
+            check_from_roman("MMMCMXCIX", 3999);
         }
 
         #[test]
