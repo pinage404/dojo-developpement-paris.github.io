@@ -99,10 +99,7 @@ impl TryFrom<&str> for Roman {
     type Error = String;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
-        let all_valid_symbol = Digit::all_digits()
-            .iter()
-            .map(|digit| digit.to_symbol())
-            .collect::<String>();
+        let all_valid_symbol = Digit::all_valid_symbol();
         value
             .chars()
             .all(|char| all_valid_symbol.contains(char))
