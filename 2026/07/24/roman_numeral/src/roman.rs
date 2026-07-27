@@ -12,6 +12,14 @@ impl Roman {
         Self { digits }
     }
 
+    fn find_number_ish(decimal: u16) -> impl Fn((Digit, Digit)) -> Option<Roman> {
+        move |(digit_minus, digit)| {
+            (decimal >= digit - digit_minus && decimal < digit).then(|| {
+                Self::new(vec![digit_minus, digit]) + Self::from(decimal - (digit - digit_minus))
+            })
+        }
+    }
+
     fn find_four_ish(decimal: u16) -> Option<Roman> {
         let all_digits = Digit::all_digits();
 
@@ -27,10 +35,7 @@ impl Roman {
                 let digit = *all_digits.get(digit_minus_position - 1).unwrap();
                 (digit_minus, digit)
             })
-            .filter(|(digit_minus, digit)| decimal >= *digit - *digit_minus && decimal < *digit)
-            .map(|(digit_minus, digit)| {
-                Self::new(vec![digit_minus, digit]) + Self::from(decimal - (digit - digit_minus))
-            })
+            .filter_map(Self::find_number_ish(decimal))
             .next()
     }
 
