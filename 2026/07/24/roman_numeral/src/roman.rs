@@ -35,8 +35,7 @@ impl Roman {
                 let digit = *all_digits.get(digit_minus_position - 1).unwrap();
                 (digit_minus, digit)
             })
-            .filter_map(Self::find_number_ish(decimal))
-            .next()
+            .find_map(Self::find_number_ish(decimal))
     }
 
     fn find_nine_ish(decimal: u16) -> Option<Roman> {
