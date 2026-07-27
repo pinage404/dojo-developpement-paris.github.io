@@ -114,8 +114,7 @@ impl TryFrom<&str> for Roman {
 
 impl From<Roman> for u16 {
     fn from(value: Roman) -> Self {
-        match value.digits.first().unwrap() {
-            digit => digit.value(),
-        }
+        let digit = value.digits.first().unwrap();
+        digit.value()
     }
 }
