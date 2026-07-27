@@ -33,13 +33,6 @@ impl Digit {
             .filter(|digit| is_dozen(digit.value()))
             .collect()
     }
-
-    pub(crate) fn all_valid_symbol() -> String {
-        Self::all_digits()
-            .into_iter()
-            .map(Digit::to_symbol)
-            .collect()
-    }
 }
 
 fn is_dozen(number: u16) -> bool {
