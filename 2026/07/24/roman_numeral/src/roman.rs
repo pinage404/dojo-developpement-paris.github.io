@@ -118,6 +118,12 @@ impl From<Roman> for u16 {
             .iter()
             .enumerate()
             .map(|(index, digit)| (digit, value.digits.get(index + 1)))
-            .fold(0, |acc, (&digit, _maybe_next_digit)| acc + digit)
+            .fold(
+                0,
+                |acc, (&digit, maybe_next_digit)| match maybe_next_digit {
+                    Some(_next_digit) => acc + digit.value(),
+                    None => acc + digit.value(),
+                },
+            )
     }
 }
