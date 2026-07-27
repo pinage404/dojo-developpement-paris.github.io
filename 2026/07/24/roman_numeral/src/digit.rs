@@ -99,6 +99,14 @@ impl Sub<Digit> for u16 {
     }
 }
 
+impl Sub<Digit> for i32 {
+    type Output = i32;
+
+    fn sub(self, other: Digit) -> Self::Output {
+        self - i32::from(other.value())
+    }
+}
+
 impl Sub<Digit> for Digit {
     type Output = u16;
 

@@ -110,10 +110,6 @@ impl TryFrom<&str> for Roman {
 
 impl From<Roman> for u16 {
     fn from(value: Roman) -> Self {
-        if value == Roman::new(vec![Digit::I, Digit::V]) {
-            return 4;
-        }
-
         value
             .digits
             .iter()
@@ -122,6 +118,7 @@ impl From<Roman> for u16 {
             .fold(
                 0_i32,
                 |acc, (&digit, maybe_next_digit)| match maybe_next_digit {
+                    Some(&next_digit) if next_digit.value() > digit => acc - digit,
                     Some(_next_digit) => acc + digit,
                     None => acc + digit,
                 },
