@@ -33,8 +33,8 @@ impl Digit {
 
     pub(crate) fn all_valid_symbol() -> String {
         Self::all_digits()
-            .iter()
-            .map(|digit| digit.to_symbol())
+            .into_iter()
+            .map(Digit::to_symbol)
             .collect()
     }
 }
