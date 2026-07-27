@@ -30,16 +30,23 @@ impl Roman {
     fn find_nine_ish(decimal: u16) -> Option<Roman> {
         let dozens = Digit::dozens();
 
-        dozens.clone().into_iter().find_map(|digit_minus| {
-            let digit_minus_position = dozens.iter().position(|d| *d == digit_minus).unwrap();
-            if digit_minus_position == 0 {
-                return None;
-            }
-            let digit = *dozens.get(digit_minus_position - 1).unwrap();
-            (decimal >= digit - digit_minus && decimal < digit).then(|| {
-                Self::new(vec![digit_minus, digit]) + Self::from(decimal - (digit - digit_minus))
+        dozens
+            .clone()
+            .into_iter()
+            .map(|digit_minus| {
+                let digit_minus_position = dozens.iter().position(|d| *d == digit_minus).unwrap();
+                (digit_minus, digit_minus_position)
             })
-        })
+            .find_map(|(digit_minus, digit_minus_position)| {
+                if digit_minus_position == 0 {
+                    return None;
+                }
+                let digit = *dozens.get(digit_minus_position - 1).unwrap();
+                (decimal >= digit - digit_minus && decimal < digit).then(|| {
+                    Self::new(vec![digit_minus, digit])
+                        + Self::from(decimal - (digit - digit_minus))
+                })
+            })
     }
 
     fn find_normal_number(decimal: u16) -> Option<Roman> {
