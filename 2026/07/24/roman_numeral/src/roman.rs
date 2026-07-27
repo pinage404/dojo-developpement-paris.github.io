@@ -41,7 +41,8 @@ impl From<u16> for Roman {
             })
             .or_else(|| {
                 let digit_minus = Digit::X;
-                let digit = Digit::C;
+                let digit_minus_position = dozens.iter().position(|d| *d == digit_minus).unwrap();
+                let digit = *dozens.get(digit_minus_position - 1).unwrap();
                 (decimal >= digit - digit_minus && decimal < digit).then(|| {
                     Self::new(vec![digit_minus, digit])
                         + Self::from(decimal - (digit - digit_minus))
