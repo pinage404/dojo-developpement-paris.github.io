@@ -95,9 +95,11 @@ impl Add for Roman {
     }
 }
 
-impl From<&str> for Roman {
-    fn from(_value: &str) -> Self {
-        Roman::default()
+impl TryFrom<&str> for Roman {
+    type Error = ();
+
+    fn try_from(_value: &str) -> Result<Self, Self::Error> {
+        Ok(Roman::default())
     }
 }
 

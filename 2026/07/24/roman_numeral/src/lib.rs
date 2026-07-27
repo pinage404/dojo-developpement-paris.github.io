@@ -76,7 +76,7 @@ mod test {
 
         #[test]
         fn simple_number() {
-            assert_that(&u16::from(Roman::from("I"))).is_equal_to(1);
+            assert_that(&u16::from(Roman::try_from("I").unwrap())).is_equal_to(1);
         }
     }
     // #[quickcheck]
