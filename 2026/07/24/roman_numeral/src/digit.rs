@@ -38,7 +38,7 @@ impl Digit {
 fn is_dozen(number: u16) -> bool {
     match number {
         1_000 => is_dozen(number / 10),
-        100 => true,
+        100 => is_dozen(number / 10),
         10 => true,
         1 => true,
         _ => false,
