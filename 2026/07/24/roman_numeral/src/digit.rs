@@ -39,11 +39,7 @@ fn is_dozen(number: u16) -> bool {
     if number > 10 {
         is_dozen(number / 10)
     } else {
-        match number {
-            10 => true,
-            1 => true,
-            _ => false,
-        }
+        number.is_multiple_of(10) || number == 1
     }
 }
 
