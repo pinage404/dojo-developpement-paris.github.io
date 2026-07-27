@@ -24,6 +24,9 @@ impl From<u16> for Roman {
             .find_map(|digit_minus| {
                 let digit_minus_position =
                     all_digits.iter().position(|d| *d == digit_minus).unwrap();
+                if digit_minus_position == 0 {
+                    return None;
+                }
                 let digit = *all_digits.get(digit_minus_position - 1).unwrap();
                 (decimal >= digit - digit_minus && decimal < digit).then(|| {
                     Self::new(vec![digit_minus, digit])

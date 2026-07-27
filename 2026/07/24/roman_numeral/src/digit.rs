@@ -25,7 +25,7 @@ impl Digit {
     }
 
     pub(super) fn dozens() -> Vec<Self> {
-        vec![Self::C, Self::X, Self::I]
+        vec![Self::M, Self::C, Self::X, Self::I]
     }
 }
 
