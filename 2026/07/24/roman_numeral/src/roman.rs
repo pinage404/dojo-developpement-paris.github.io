@@ -43,8 +43,11 @@ impl Roman {
                 (digit_minus, digit_minus_position)
             })
             .filter(|(_digit_minus, digit_minus_position)| digit_minus_position != &0)
-            .find_map(|(digit_minus, digit_minus_position)| {
+            .map(|(digit_minus, digit_minus_position)| {
                 let digit = *dozens.get(digit_minus_position - 1).unwrap();
+                (digit_minus, digit)
+            })
+            .find_map(|(digit_minus, digit)| {
                 (decimal >= digit - digit_minus && decimal < digit).then(|| {
                     Self::new(vec![digit_minus, digit])
                         + Self::from(decimal - (digit - digit_minus))
