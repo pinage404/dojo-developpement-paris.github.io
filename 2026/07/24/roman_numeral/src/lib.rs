@@ -79,6 +79,7 @@ mod test {
         #[test]
         fn simple_number() {
             check_from_roman("I", 1);
+            check_from_roman("X", 10);
         }
 
         #[test]

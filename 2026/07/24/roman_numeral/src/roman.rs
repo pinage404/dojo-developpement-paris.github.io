@@ -108,13 +108,25 @@ impl TryFrom<&str> for Roman {
                     .collect::<String>()
                     .contains(char)
             })
-            .then(Roman::default)
+            .then(|| match value {
+                "X" => Roman::from(10),
+                "I" => Roman::from(1),
+                _ => todo!(),
+            })
             .ok_or(format!("Invalid roman number : {value}"))
     }
 }
 
 impl From<Roman> for u16 {
-    fn from(_value: Roman) -> Self {
-        1
+    fn from(value: Roman) -> Self {
+        match value.digits.first().unwrap() {
+            Digit::M => todo!(),
+            Digit::D => todo!(),
+            Digit::C => todo!(),
+            Digit::L => todo!(),
+            Digit::X => 10,
+            Digit::V => todo!(),
+            Digit::I => 1,
+        }
     }
 }
