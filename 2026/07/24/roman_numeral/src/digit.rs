@@ -127,6 +127,12 @@ impl PartialOrd<Digit> for u16 {
     }
 }
 
+impl PartialOrd<Digit> for Digit {
+    fn partial_cmp(&self, other: &Digit) -> Option<cmp::Ordering> {
+        self.value().partial_cmp(&other.value())
+    }
+}
+
 impl TryFrom<char> for Digit {
     type Error = String;
 
