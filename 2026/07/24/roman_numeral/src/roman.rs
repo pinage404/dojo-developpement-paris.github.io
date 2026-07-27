@@ -44,9 +44,11 @@ impl Roman {
         dozens
             .clone()
             .into_iter()
-            .map(|digit_minus| {
-                let digit_minus_position = dozens.iter().position(|d| *d == digit_minus).unwrap();
-                (digit_minus, digit_minus_position)
+            .filter_map(|digit_minus| {
+                dozens
+                    .iter()
+                    .position(|d| *d == digit_minus)
+                    .map(|digit_minus_position| (digit_minus, digit_minus_position))
             })
             .filter(|(_digit_minus, digit_minus_position)| digit_minus_position != &0)
             .map(|(digit_minus, digit_minus_position)| {
