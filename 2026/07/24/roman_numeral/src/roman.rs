@@ -40,17 +40,19 @@ impl Roman {
             })
         })
     }
+
+    fn find_normal_number(decimal: u16) -> Option<Roman> {
+        Digit::all_digits().into_iter().find_map(|digit| {
+            (decimal >= digit).then(|| Self::new(vec![digit]) + Self::from(decimal - digit))
+        })
+    }
 }
 
 impl From<u16> for Roman {
     fn from(decimal: u16) -> Self {
         Roman::find_four_ish(decimal)
             .or_else(|| Roman::find_nine_ish(decimal))
-            .or_else(|| {
-                Digit::all_digits().into_iter().find_map(|digit| {
-                    (decimal >= digit).then(|| Self::new(vec![digit]) + Self::from(decimal - digit))
-                })
-            })
+            .or_else(|| Roman::find_normal_number(decimal))
             .unwrap_or_default()
     }
 }
