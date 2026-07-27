@@ -33,7 +33,7 @@ impl Roman {
             })
             .filter(|(_digit_minus, digit_minus_position)| digit_minus_position != &0)
             .filter_map(|(digit_minus, digit_minus_position)| {
-                (*all_digits)
+                all_digits
                     .get(digit_minus_position - 1)
                     .map(|&digit| (digit_minus, digit))
             })
@@ -49,7 +49,7 @@ impl Roman {
             .filter_map(|digit_minus| {
                 dozens
                     .iter()
-                    .position(|d| *d == digit_minus)
+                    .position(|d| d == &digit_minus)
                     .map(|digit_minus_position| (digit_minus, digit_minus_position))
             })
             .filter(|(_digit_minus, digit_minus_position)| digit_minus_position != &0)
