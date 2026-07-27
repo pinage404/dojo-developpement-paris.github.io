@@ -27,10 +27,7 @@ impl Digit {
     pub(super) fn dozens() -> Vec<Self> {
         Self::all_digits()
             .into_iter()
-            .filter(|digit| {
-                let number = digit.value();
-                is_dozen(number)
-            })
+            .filter(|digit| is_dozen(digit.value()))
             .collect()
     }
 }
