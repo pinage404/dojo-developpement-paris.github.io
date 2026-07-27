@@ -105,7 +105,11 @@ impl TryFrom<&str> for Roman {
             let first_digit = Digit::try_from(first_char)
                 .map(|digit| Self::new(vec![digit]))
                 .unwrap();
-            return Ok(first_digit + Self::new(vec![Digit::I]));
+            let second_char = chars.next().unwrap();
+            let second_digit = Digit::try_from(second_char)
+                .map(|digit| Self::new(vec![digit]))
+                .unwrap();
+            return Ok(first_digit + second_digit);
         }
 
         let char = value.chars().next().unwrap();
