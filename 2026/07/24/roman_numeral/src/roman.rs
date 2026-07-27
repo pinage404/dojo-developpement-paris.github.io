@@ -33,8 +33,9 @@ impl Roman {
             })
             .filter(|(_digit_minus, digit_minus_position)| digit_minus_position != &0)
             .filter_map(|(digit_minus, digit_minus_position)| {
-                let digit = *all_digits.get(digit_minus_position - 1).unwrap();
-                Some((digit_minus, digit))
+                (*all_digits)
+                    .get(digit_minus_position - 1)
+                    .map(|&digit| (digit_minus, digit))
             })
             .find_map(Self::find_number_ish(decimal))
     }
@@ -52,9 +53,10 @@ impl Roman {
                     .map(|digit_minus_position| (digit_minus, digit_minus_position))
             })
             .filter(|(_digit_minus, digit_minus_position)| digit_minus_position != &0)
-            .map(|(digit_minus, digit_minus_position)| {
-                let digit = *dozens.get(digit_minus_position - 1).unwrap();
-                (digit_minus, digit)
+            .filter_map(|(digit_minus, digit_minus_position)| {
+                (*dozens)
+                    .get(digit_minus_position - 1)
+                    .map(|&digit| (digit_minus, digit))
             })
             .find_map(Self::find_number_ish(decimal))
     }
