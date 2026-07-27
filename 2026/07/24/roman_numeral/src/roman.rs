@@ -100,15 +100,11 @@ impl TryFrom<&str> for Roman {
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
         if value == "XI" {
-            let mut chars = value.chars();
-            let first_char = chars.next().unwrap();
-            let first_digit = Digit::try_from(first_char).map(|digit| Self::new(vec![digit]));
-            let second_char = chars.next().unwrap();
-            let second_digit = Digit::try_from(second_char).map(|digit| Self::new(vec![digit]));
-            let romans = vec![first_digit, second_digit];
-            return romans
-                .iter()
-                .try_fold(Self::default(), |acc, roman| roman.clone().map(|r| acc + r));
+            let mut romans = value
+                .chars()
+                .into_iter()
+                .map(|first_char| Digit::try_from(first_char).map(|digit| Self::new(vec![digit])));
+            return romans.try_fold(Self::default(), |acc, roman| roman.clone().map(|r| acc + r));
         }
 
         let char = value.chars().next().unwrap();
