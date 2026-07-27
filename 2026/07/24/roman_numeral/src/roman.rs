@@ -14,8 +14,9 @@ impl Roman {
 
     fn find_four_ish(decimal: u16) -> Option<Roman> {
         let all_digits = Digit::all_digits();
+        let dozens = Digit::dozens();
 
-        Digit::dozens()
+        dozens
             .into_iter()
             .map(|digit_minus| {
                 let digit_minus_position =
