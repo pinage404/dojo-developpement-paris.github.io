@@ -54,6 +54,7 @@ mod test {
     fn nine_ish() {
         check_to_roman(9, "IX");
         check_to_roman(90, "XC");
+        check_to_roman(900, "CM");
     }
 
     // #[quickcheck]

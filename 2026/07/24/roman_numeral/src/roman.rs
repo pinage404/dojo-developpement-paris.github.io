@@ -31,6 +31,7 @@ impl From<u16> for Roman {
             })
             .or_else(|| (decimal == 9).then(|| Self::new(vec![Digit::I, Digit::X])))
             .or_else(|| (decimal == 90).then(|| Self::new(vec![Digit::X, Digit::C])))
+            .or_else(|| (decimal == 900).then(|| Self::new(vec![Digit::C, Digit::M])))
             .or_else(|| {
                 all_digits.into_iter().find_map(|digit| {
                     (decimal >= digit).then(|| Self::new(vec![digit]) + Self::from(decimal - digit))
